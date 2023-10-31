@@ -42,7 +42,7 @@ public function loan_list_close(){
         $data->time = $request->validate_year;
         $data->status = '1';
         $data->save();
-        Toastr::success('loan Created');
+        toastr()->Success('Loan create Successfully');
 
 
         return to_route('loan.list');
@@ -57,13 +57,8 @@ public function loan_list_close(){
         $data->status = '1';
         $data->save();
         
-        $transaction = new Transection();
-        $transaction->account_id = $request->get('account_number');
-        $transaction->account_type = '4';
-        $transaction->transection_type = '2';
-        $transaction->transection_amount = $request->get('amount');
-        $transaction->save();
-        // toastr()->addSuccess('Loan Update Successfully');
+
+     toastr()->Success('Loan Update Successfully');
 
         return to_route('loan.list');
     }
