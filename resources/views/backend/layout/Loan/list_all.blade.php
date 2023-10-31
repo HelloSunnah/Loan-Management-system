@@ -14,8 +14,8 @@
 <div class="card card-outline card-primary">
     <div class="card-header">
         <h3 class="card-title">
-            FDR Closed List </h3>
-
+           Closed Loan List </h3>
+      
     </div>
 
     <div class="card-body">
@@ -24,30 +24,36 @@
                 <thead>
                     <tr>
                         <th>Account Number</th>
-                        <th>FDR Amount</th>
+                        <th>Account Holder</th>
+                        <th>Loan Amount</th>
                         <th>interest</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($fdr as $data)
+                    @foreach($loan as $data)
                     <tr>
-                        <td>{{$data->fdr->account_number }}
-
+                        <td>{{$data->loan->account_number ??''}}
                         </td>
+
+                        <td>{{$data->loan->name ??''}}</td>
+                      
                         <td>
-                            {{$data->ammount}}
+                            {{$data->loan_amount}}
                         </td>
                         <td>
                             {{$data->interest}}%
                         </td>
                         <td>
-                            <a class="btn btn-success" href="{{route('fdr.status.change',$data->id)}}">
-                                Make it active
+                            <a class="btn btn-success" href="{{route('loan.status.change',$data->id)}}">
+                                active
                             </a>
 
                         </td>
-
+                        <td>
+                        <a class="btn btn-primary" href="{{route('loan.edit',$data->id)}}">Edit</a>    
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

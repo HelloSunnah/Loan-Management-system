@@ -3,10 +3,15 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
-        <li class="nav-item">
+    <li class="nav-item">
             <a class="nav-link " href="{{ route('dashboard') }}">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
+            </a>
+        </li>  <li class="nav-item">
+            <a class="nav-link " href="{{ route('cashbook') }}">
+                <i class="bi bi-grid"></i>
+                <span>Cashbook</span>
             </a>
         </li>
         <li class="nav-item">
@@ -106,15 +111,30 @@
         </li>
 
     </ul>
+    </li> <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-loan" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-menu-button-wide"></i><span>Loan</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-loan" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+              
+
+        <li>
+            <a href="{{route('loan.list')}}">
+                <i class="bi bi-circle"></i><span>Loan</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{route('closed.loan.list')}}">
+                <i class="bi bi-circle"></i><span>Closed Loan</span>
+            </a>
+        </li>
+
+    </ul>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="{{route('loan.list')}}">
-            <i class="bi bi-menu-button-wide"></i><span>Loan</span></i>
-        </a>
 
-
-    </li>
+    
     <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('transection.history')}}">
             <i class="bi bi-menu-button-wide"></i><span>Transection History</span></i>

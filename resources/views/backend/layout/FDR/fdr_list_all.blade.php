@@ -25,14 +25,12 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table id="list" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+        <table id="myTable" class="table table-hover" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>Account Number</th>
                         <th>FDR Amount</th>
                         <th>interest</th>
-                        <th>interests Amount</th>
-                        <th>Total Amount</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -51,13 +49,13 @@
                         </td>
                         <td>
                             <a class="btn btn-danger" href="{{route('fdr.status.change',$data->id)}}">
-                              Make it inactive
+                                Make it inactive
                             </a>
 
-                         
+
                         </td>
                         <td>
-                            <button>Edit</button>
+                        <a class="btn btn-primary" href="{{route('fdr.edit',$data->id)}}">Edit</a>    
                         </td>
                     </tr>
                     @endforeach

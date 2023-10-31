@@ -4,7 +4,6 @@
 
 
 
-
   <div class="card mb-4">
     <div class="row">
       <div class="col-md-2">
@@ -21,10 +20,7 @@
                 <th>Account Number</th>
                 <td>{{$member->account_number}}</td>
               </tr>
-              <tr>
-                <th>Id Number</th>
-                <td>{{$member->id_number}}</td>
-              </tr>
+              
               <tr>
                 <th>Holder Name</th>
                 <td>{{$member->name}}</td>

@@ -26,6 +26,13 @@ class FDRController extends Controller
         $account = Member::where('status', '1')->get();
         return view('backend.layout.FDR.fdr_create', compact('account'));
     }
+    public function fdr_edit($id){
+        $data['edit']=FDR::find($id);
+        $data['account'] = Member::where('status', '1')->get();
+
+        return view('backend.layout.FDR.fdr_edit',$data);
+
+    }
     public function fdr_status_post($id)
     {
         $data = FDR::find($id);
@@ -48,7 +55,7 @@ class FDRController extends Controller
                 $data2->save();
             }
         }
-        toastr()->addSuccess('Status Update Successfully');
+        // toastr()->addSuccess('Status Update Successfully');
         return back();
     }
     public function fdr_create_post(Request $request)
@@ -60,9 +67,28 @@ class FDRController extends Controller
         $fdr->interest =  $request->get('interest');
         $fdr->validate_year = $request->get('validate_year');
         $fdr->save();
-        toastr()->addSuccess('FDR Create Successfully');
+        // toastr()->addSuccess('FDR Create Successfully');
+        $transaction = new Transection();
+        $transaction->account_id = $request->get('account_number');
+        $transaction->account_type = '2';
+        $transaction->transection_type = '1';
+        $transaction->transection_amount = $request->get('ammount');
 
-        return to_route('fdr.list');
+        $transaction->save();
+        return to_route('fdr.list.all');
+    }
+    public function fdr_edit_post(Request $request,$id)
+    {
+
+        $fdr = FDR::find($id);
+        $fdr->account_number =  $request->get('account_number');
+        $fdr->ammount =  $request->get('ammount');
+        $fdr->interest =  $request->get('interest');
+        $fdr->validate_year = $request->get('validate_year');
+        $fdr->save();
+        toastr()->addSuccess('FDR update Successfully');
+
+        return to_route('fdr.list.all');
     }
     public function  search_account(Request $request)
     {

@@ -25,13 +25,12 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table id="list" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+            <table id="myTable" class="table table-hover" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>Name</th>
 
                         <th>Account Number</th>
-                        <th>Id Number</th>
                         <th>Father name</th>
                         <th>Mother Name</th>
                         <th>Mobile</th>
@@ -43,9 +42,7 @@
                     @foreach($data as $value)
                     <tr>
                         <td>{{$value->name}}</td>
-
                         <td>{{$value->account_number}}</td>
-                        <td>{{$value->id_number}}</td>
                         <td>{{$value->father_name}}</td>
                         <td>{{$value->mother_name}}</td>
                         <td>{{$value->mobile}}</td>

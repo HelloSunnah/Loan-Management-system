@@ -19,20 +19,7 @@
                             @csrf
 
 
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-6">
 
-                                        <label class="form-label">Account Number<span style="color:red;">*</span></label>
-                                        <input type="number" class="form-control" placeholder="" name="account_number" value="{{$edit->account_number}}" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">Id Number<span style="color:red;">*</span></label>
-                                        <input type="number" class="form-control" name="id_number" value="{{$edit->id_number}}" required>
-                                    </div>
-                                </div>
-
-                            </div>
 
 
                             <div class="col-md-12">
@@ -43,7 +30,7 @@
                                         <input type="text" class="form-control" placeholder="" name="name" value="{{$edit->name}}" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Name(Bangle)<span style="color:red;">*</span></label>
+                                        <label class="form-label">Name(Bangle)<span style="color:red;"></span></label>
                                         <input type="text" class="form-control" name="name_bn" value="{{$edit->name_bn}}" required>
                                     </div>
                                 </div>
@@ -71,12 +58,12 @@
                                         <div>
 
                                         </div>
-                                        <label class="form-label">Present Address<span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control" placeholder="" name="present_address" value="{{$edit->present_address}}" >
+                                        <label class="form-label">Present Address<span style="color:red;"></span></label>
+                                        <input type="text" class="form-control" placeholder="" name="present_address" value="{{$edit->present_address}}">
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Parmanent Address<span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control" name="parmanent_address" value="{{$edit->parmanent_address}}" >
+                                        <label class="form-label">Parmanent Address<span style="color:red;"></span></label>
+                                        <input type="text" class="form-control" name="parmanent_address" value="{{$edit->parmanent_address}}">
                                     </div>
                                 </div>
 
@@ -114,17 +101,14 @@
                                     <div class="col-md-6">
 
                                         <label class="form-label">Image<span style="color:red;">*</span></label>
-                                        <input type="file" class="form-control" placeholder="" name="image" value="{{$edit->image}}" >
+                                        <input type="file" class="form-control" placeholder="" name="image" value="{{$edit->image}}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Signature<span style="color:red;">*</span></label>
                                         <input type="file" class="form-control" name="signature" value="{{$edit->signature}}">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">Personal Amount<span style="color:red;"></span></label>
-                                    <input type="text" class="form-control" placeholder="" name="personal_amount" value="{{$edit->personal_amount}}" >
-                                </div>
+                      
 
                             </div>
 
@@ -142,8 +126,8 @@
                                         <input type="text" class="form-control" placeholder="" name="nominee_name" value="{{$edit->nominee_name}}" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Nominee Relation<span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control" name="nominee_relation" value="{{$edit->nominee_relation}}" required>
+                                        <label class="form-label">Nominee Relation<span style="color:red;"></span></label>
+                                        <input type="text" class="form-control" name="nominee_relation" value="{{$edit->nominee_relation}}">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -161,7 +145,7 @@
                                     <div class="col-md-6">
 
                                         <label class="form-label">NID Number<span style="color:red;">*</span></label>
-                                        <input type="number" class="form-control" placeholder="" name="nominee_nid" value="{{$edit->nominee_nid}}" >
+                                        <input type="number" class="form-control" placeholder="" name="nominee_nid" value="{{$edit->nominee_nid}}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Birth Id<span style="color:red;"></span></label>
@@ -173,7 +157,7 @@
                                 <div class="col-md-6">
 
                                     <label class="form-label">Present Address<span style="color:red;"></span></label>
-                                    <input type="text" class="form-control" placeholder="" name="nominee_present_adress" value="{{$edit->nominee_present_adress}}" required>
+                                    <input type="text" class="form-control" placeholder="" name="nominee_present_adress" value="{{$edit->nominee_present_adress}}">
                                 </div>
                                 <div class="col-md-6">
 

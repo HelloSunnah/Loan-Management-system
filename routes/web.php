@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Cashbook;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DPSController;
+use App\Http\Controllers\FDRController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\MemberController;
@@ -27,9 +29,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::get('/home', function () {
+Route::get('/dashboard', function () {
     return view('backend.master');
 })->middleware(['auth', 'verified'])->name('home');
+
+Route::get('/login/data', [ProfileController::class, 'log']);
 
 Route::middleware('auth')->group(function () {
     
@@ -104,7 +108,7 @@ Route::middleware('auth')->group(function () {
 
 
     //All 
-    Route::post('/transection/list/', [TransectionController::class, 'transection_add_withdraw'])->name('transection.amount');
+    // Route::post('/transection/list/', [TransectionController::class, 'transection_add_withdraw'])->name('transection.amount');
     Route::post('/transection/{id}', [TransectionController::class, 'transection'])->name('transection');
    
     Route::get('/transection/history', [TransectionController::class, 'transection_history'])->name('transection.history');

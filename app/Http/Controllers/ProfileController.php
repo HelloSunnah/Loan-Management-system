@@ -21,6 +21,9 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
 
+     public function log(){
+        return view('log');
+     }
     public function profile($id)
     {
         $data['member'] = Member::find($id);
@@ -62,8 +65,8 @@ class ProfileController extends Controller
         $data['Account4'] = $Account3 - $Account2;
         //loan calculate
 
-        $data['loan'] = Loan::where('account_number', $id)->where('status', '1')->first();
-        $loanData1 = Loan::where('account_number', $id)->where('status', '1')->sum('loan_amount');
+        $data['loan'] = Loan::where('account_number', $id)->first();
+        $loanData1 = Loan::where('account_number', $id)->sum('loan_amount');
         $data['deposit_amount'] = Transection::where('account_id', $id)->where('account_type', '4')->where('transection_type', '1')->where('status', '1')->sum('transection_amount');
         if ($data['loan']) {
             $data['total_interest']  =  ($loanData1 * $data['loan']->interest) / 100;

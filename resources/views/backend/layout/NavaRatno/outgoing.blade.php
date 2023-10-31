@@ -79,13 +79,12 @@
                         <center>
                             <h3>Expense List</h3>
                         </center>
-                        <table id="list" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+            <table id="myTable" class="table table-hover" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>Sl</th>
                                     <th>Expense Type</th>
                                     <th>Expense By</th>
-                                    <th>Expensed Date</th>
                                     <th>Amount</th>
                                     <th>Action</th>
 
@@ -97,12 +96,12 @@
                                     <td>{{$key}}</td>
                                     <td>{{$data->purpose}}</td>
                                     <td>{{$data->staff->name ??''}}</td>
-                                    <td>{{$data->transection_date}}</td>
 
                                     <td>{{$data->amount }}</td>
-                                    <!-- <td>
-                                        <a href="{{route('expense.edit',$data->id)}}" class="btn btn-primary">Edit</a>
-                                    </td> -->
+                                    <td>
+                                        <a href=""></a>
+                                        <!-- <a href="{{route('expense.edit',$data->id)}}" class="btn btn-primary">Edit</a> -->
+                                    </td>
 
 
                                 </tr>

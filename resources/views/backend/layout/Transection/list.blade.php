@@ -25,7 +25,7 @@
 
     <div class="card-body">
         <div class="table-responsive" id="print_history">
-            <table id="list" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+            <table id="myTable" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>Account Number</th>

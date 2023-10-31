@@ -1,4 +1,3 @@
-
 <style>
     :root {
         --background: #1a1a2e;

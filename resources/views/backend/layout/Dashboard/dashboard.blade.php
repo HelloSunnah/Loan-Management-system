@@ -1,149 +1,127 @@
 @extends('backend.master')
 @section('content')
-@if (session('success'))
-<div class="alert alert-success">
-    {{session("success")}}
-</div>
-@endif
-@if (session('danger'))
-<div class="alert alert-danger">
-    {{session("danger")}}
-</div>
-@endif
+<style>
+    .c-dashboardInfo {
+        margin-bottom: 15px;
+    }
 
-<div class="row mb-3">
+    .c-dashboardInfo .wrap {
+        background: #ffffff;
+        box-shadow: 2px 10px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 7px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        padding: 40px 25px 20px;
+        height: 100%;
+    }
 
-    <div class="col-xl-3 col-md-6 mb-4">
+    .c-dashboardInfo__title,
+    .c-dashboardInfo__subInfo {
+        color: #6c6c6c;
+        font-size: 1.18em;
+    }
 
-        <div class="card h-100">
-            <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col mr-2">
-                        <center>
-                            <h4>Member Personal Amount</h4>
-                            <h3>{{$personal_ammount}}</h3>
-                        </center>
-                    </div>
-                    <div class="col-auto">
-                    </div>
+    .c-dashboardInfo span {
+        display: block;
+    }
+
+    .c-dashboardInfo__count {
+        font-weight: 600;
+        font-size: 2.5em;
+        line-height: 64px;
+        color: #323c43;
+    }
+
+    .c-dashboardInfo .wrap:after {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 10px;
+        content: "";
+    }
+
+    .c-dashboardInfo:nth-child(1) .wrap:after {
+        background: linear-gradient(82.59deg, #00c48c 0%, #00a173 100%);
+    }
+
+    .c-dashboardInfo:nth-child(2) .wrap:after {
+        background: linear-gradient(81.67deg, #0084f4 0%, #1a4da2 100%);
+    }
+
+    .c-dashboardInfo:nth-child(3) .wrap:after {
+        background: linear-gradient(69.83deg, #0084f4 0%, #00c48c 100%);
+    }
+
+    .c-dashboardInfo:nth-child(4) .wrap:after {
+        background: linear-gradient(81.67deg, #ff647c 0%, #1f5dc5 100%);
+    }
+
+    .c-dashboardInfo__title svg {
+        color: #d7d7d7;
+        margin-left: 5px;
+    }
+
+    .MuiSvgIcon-root-19 {
+        fill: currentColor;
+        width: 1em;
+        height: 1em;
+        display: inline-block;
+        font-size: 24px;
+        transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        user-select: none;
+        flex-shrink: 0;
+    }
+</style>
+
+
+<div id="root">
+    <div class="container pt-5">
+
+        <div class="row align-items-stretch">
+            <div class="c-dashboardInfo col-lg-3 col-md-6">
+                <div class="wrap">
+                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">FDR Available Amount</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{$totalfdr}}<i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
+                </div>
+            </div>
+            <div class="c-dashboardInfo col-lg-3 col-md-6">
+                <div class="wrap">
+                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">DPS Available Ammount </h4><span class="hind-font caption-12 c-dashboardInfo__count">{{$totaldps}}<i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
+                </div>
+            </div>
+
+            <div class="c-dashboardInfo col-lg-3 col-md-6">
+                <div class="wrap">
+                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"> Loan Ammount</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{$loanWithdraw}}<i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
+                </div>
+            </div>
+            <div class="c-dashboardInfo col-lg-3 col-md-6">
+                <div class="wrap">
+                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"> Collect Loan Amount</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{$loanDeposit}}<i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
                 </div>
             </div>
         </div>
-        </a>
-    </div>
-    <div class="col-xl-3 col-md-6 mb-4">
-
-        <div class="card h-100">
-            <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col mr-2">
-                        <center>
-                            <h3>Available DPS Amount</h3>
-                            <h4>{{$dps_amount}}</h4>
-                        </center>
-                    </div>
-                    <div class="col-auto">
-                    </div>
+        <div class="row align-items-stretch">
+            <div class="c-dashboardInfo col-lg-3 col-md-6">
+                <div class="wrap">
+                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Official Income</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{$income}}<i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
                 </div>
             </div>
-        </div>
-        </a>
-    </div>
-    <div class="col-xl-3 col-md-6 mb-4">
-
-        <div class="card h-100">
-            <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col mr-2">
-                        <center>
-                            <h3>Available FDR Amount</h3>
-                            <h4>{{$fdr_amount}}</h4>
-                        </center>
-                    </div>
-                    <div class="col-auto">
-                    </div>
+            <div class="c-dashboardInfo col-lg-3 col-md-6">
+                <div class="wrap">
+                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Official Expense</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{$expense}}<i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
                 </div>
             </div>
-        </div>
-        </a>
-    </div>
-    <div class="col-xl-3 col-md-6 mb-4">
 
-        <div class="card h-100">
-            <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col mr-2">
-                        <center>
-                            <h3>Loan Provided</h3>
-                            <h4>{{$loan}}</h4>
-                        </center>
-                    </div>
-                    <div class="col-auto">
-                    </div>
+            <div class="c-dashboardInfo col-lg-3 col-md-6">
+                <div class="wrap">
+                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Personal Account Amount</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{$totalAmount}}<i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
                 </div>
             </div>
-        </div>
-        </a>
-    </div>
-    <div class="col-xl-3 col-md-6 mb-4">
 
-        <div class="card h-100">
-            <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col mr-2">
-                        <center>
-                            <h3> Collected Loan</h3>
-
-                            <h4>{{$loan_collect}}</h4>
-
-                        </center>
-                    </div>
-                    <div class="col-auto">
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </div>
-    <div class="col-xl-3 col-md-6 mb-4">
-
-        <div class="card h-100">
-            <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col mr-2">
-                        <center>
-                            <h3>Official Income</h3>
-                            <h4>{{$income}}</h4>
-
-                        </center>
-                    </div>
-                    <div class="col-auto">
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </div>
-
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card h-100">
-            <div class="card-body">
-                <div class="row align-items-center">
-                    <div class="col mr-2">
-                        <center>
-                            <h3>Official Expense</h3>
-                            <h4>{{$expense}}</h4>
-                        </center>
-
-                    </div>
-                    <div class="col-auto">
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
-
-
-
-<div class="d-flex justify-content-center" @endsection
+@endsection

@@ -25,32 +25,25 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table id="list" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+            <table id="myTable" class="table table-hover" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>Account Number</th>
                         <th>Account Holder</th>
                         <th>Loan Amount</th>
                         <th>interest</th>
-                        <th>interests Amount</th>
-                        <th>Total Amount</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($fdr as $data)
+                    @foreach($loan as $data)
                     <tr>
-                        <td>{{$data->loan->account_number ??''}}
+                        <td>{{$data->account_number}}
                         </td>
 
                         <td>{{$data->loan->name ??''}}</td>
-                        <td>
-                            {{$data->loan_amount}}
-                        </td>
-                        <td>
-                            {{$data->loan_amount}}
-                        </td>
+
                         <td>
                             {{$data->loan_amount}}
                         </td>
@@ -58,20 +51,14 @@
                             {{$data->interest}}%
                         </td>
                         <td>
-                            @if($data->status==1)
                             <a class="btn btn-success" href="{{route('loan.status.change',$data->id)}}">
-                                active
-                            </a>
-
-                            @else
-                            <a class="btn btn-danger" href="{{route('loan.status.change',$data->id)}}">
                                 Inactive
                             </a>
 
-                            @endif
+
                         </td>
                         <td>
-                            <button>Edit</button>
+                            <a class="btn btn-primary" href="{{route('loan.edit',$data->id)}}">Edit</a>
                         </td>
                     </tr>
                     @endforeach

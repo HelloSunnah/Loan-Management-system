@@ -71,7 +71,7 @@ class StaffController extends Controller
 
         // return $staff;
         $staff->save();
-        toastr()->addSuccess('Staff Created Successfully');
+        toastr()->success('Staff Create Successfull');
 
         return view('backend/layout/staff/list');
     }

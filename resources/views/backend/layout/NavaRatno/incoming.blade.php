@@ -66,7 +66,7 @@
                         <center>
                             <h3>Income List</h3>
                         </center>
-                        <table id="list" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+            <table id="myTable" class="table table-hover" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>Sl</th>

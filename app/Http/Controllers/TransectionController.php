@@ -13,187 +13,110 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class TransectionController extends Controller
 {
-    public function transection_add_withdraw(Request $request)
+    
+
+
+    public function transection(Request $request, $id)
     {
-
-        $type = $request->get('type');
-        $method = $request->get('method');
-        $amount = $request->get('amount');
-        $user_id = $request->get('user_id');
-
-        $Member1 = Member::find($user_id);
-        $dps1 = DPS::find($user_id);
-        $fdr1 = FDR::find($user_id);
-        // $loan1 = Loan::find($user_id);
-
-        $Member2 = $Member1->personal_amount += $amount;
-        $dps2 = $dps1->amount += $amount;
-        $fdr2 = $fdr1->ammount += $amount;
-        // $loan2 = $loan1->ammount += $amount;
-
-
-        if ($type == 1) {
-            if ($method == 1) {
-                $Member1->update([
-                    'personal_amount' => $Member2,
-
-                ]);
-            }
-            if ($method == 2) {
-                $dps1->update([
-                    'amount' => $dps2,
-
-                ]);
-            }
-            if ($method == 3) {
-                $fdr1->update([
-                    'ammount' => $fdr2,
-
-                ]);
-            }
-            // if ($method == 4) {
-            //     $loan1->update([
-            //         'ammount' => $loan2,
-
-            //     ]);
-            // }
-        }
-
-
-
-
-        if ($type == 2) {
-            if ($method == 1) {
-                if ($Member1->personal_amount >= $amount) {
-                    $Member3 = $Member1->personal_amount -= $amount;
-                    $Member4 = $Member1->withdraw_amount += $amount;
-                    toastr()->addSuccess('Transection succesfull');
-
-                    $Member1->update([
-                        'personal_amount' => $Member3,
-                        'withdraw_amount' => $Member4,
-
-                    ]);
-                } else {
-                    toastr()->addSuccess('sorry you have unsufficient balance');
-
-                    return back();
-                }
-            }
-
-            if ($method == 2) {
-
-                if ($dps1->amount >= $amount) {
-                    $dps5 = $dps1->amount;
-                    $dps3 = $dps5 - $amount;
-                    $dps4 = $dps1->withdraw_amount += $amount;
-                    toastr()->addSuccess('Transection succesfull');
-
-                    $dps1->update([
-                        'amount' => $dps3,
-                        'withdraw_amount' => $dps4,
-
-                    ]);
-                } else {
-
-                    return back();
-                }
-            }
-
-            if ($method == 3) {
-
-
-                if ($fdr1->ammount >= $amount) {
-                    return  $fdr3 = $fdr1->ammount += $amount;
-                    $fdr4 = $fdr1->withdraw_amount += $amount;
-                    toastr()->addSuccess('Transection succesfull');
-
-                    $fdr1->update([
-                        'ammount' => $fdr3,
-                        'withdraw_amount' => $fdr4,
-
-                    ]);
-                } else {
-
-                    return back();
-                }
-            }
-        }
-
-
-        // if ($type == 2 && $method == 1) {
-
-        //     $account1->update([
-        //         'withdraw_amount' => $account2,
-
-        //     ]);
-        // }
-
-        return back();
-    }
-    public function  transection(Request $request, $id)
-    {
-
         $transection_type = $request->get('transection_type');
         $account_type = $request->account_type;
         $account_id = $request->account_id;
         $transection_amount  = $request->transection_amount;
 
-        $transection2 = FDR::where('account_number', $id)->where('status', '1')->count();
 
-        $transection3 = DPS::where('account_number', $id)->where('status', '1')->count();
-        $transection4 = Loan::where('account_number', $id)->where('status', '1')->count();
-
-        $save = new Transection();
-
-        // if ($account_type == 1) {
-
-        //     $save->transection_type = $transection_type;
-
-        //     $save->account_type = $account_type;
-        //     $save->account_id =    $account_id;
-        //     $save->transection_amount = $transection_amount;
-        //$save->save();
-        // }
-        if ($account_type == 2 && $transection2) {
-            $save->transection_type = $transection_type;
-
-            $save->account_type = $account_type;
-            $save->account_id =    $account_id;
-            $save->transection_amount = $transection_amount;
-            toastr()->addSuccess('Transection Successfull');
-
-            $save->save();
-        }
-        if ($account_type == 3 && $transection3) {
-            $save->transection_type = $transection_type;
-
-            $save->account_type = $account_type;
-            $save->account_id =    $account_id;
-            $save->transection_amount = $transection_amount;
-            toastr()->addSuccess('Transection Successfull');
+        $Member = Member::where('id', $id)->where('status', '1')->count();
+        $fdr = FDR::where('account_number', $id)->where('status', '1')->count();
+        $dps = DPS::where('account_number', $id)->where('status', '1')->count();
+        $loan = Loan::where('account_number', $id)->where('status', '1')->count();
 
 
-            $save->save();
-        }
-        if ($account_type == 4 && $transection4) {
-            $save->transection_type = $transection_type;
+        $MemberDeposit = Transection::where('account_id', $id)->where('status', '1')->where('transection_type', '1')->where('account_type', '1')->sum('transection_amount');
+        $Memberwith = Transection::where('account_id', $id)->where('status', '1')->where('transection_type', '2')->where('account_type', '1')->sum('transection_amount');
+        $totalAmount = $MemberDeposit - $Memberwith;
 
-            $save->account_type = $account_type;
-            $save->account_id =    $account_id;
-            $save->transection_amount = $transection_amount;
-            toastr()->addSuccess('Transection Successfull');
 
-            $save->save();
+        $fdrDeposit = Transection::where('account_id', $id)->where('status', '1')->where('transection_type', '1')->where('account_type', '2')->sum('transection_amount');
+        $fdrWithdraw = Transection::where('account_id', $id)->where('status', '1')->where('transection_type', '2')->where('account_type', '2')->sum('transection_amount');
+        $totalfdr = $fdrDeposit - $fdrWithdraw;
+
+
+        $dpsDeposit = Transection::where('account_id', $id)->where('status', '1')->where('transection_type', '1')->where('account_type', '3')->sum('transection_amount');
+        $dpsWithdraw = Transection::where('account_id', $id)->where('status', '1')->where('transection_type', '2')->where('account_type', '3')->sum('transection_amount');
+        $totaldps = $dpsDeposit - $dpsWithdraw;
+
+        $loanDeposit = Transection::where('account_id', $id)->where('status', '1')->where('transection_type', '1')->where('account_type', '4')->sum('transection_amount');
+        $loanWithdraw = Transection::where('account_id', $id)->where('status', '1')->where('transection_type', '2')->where('account_type', '4')->sum('transection_amount');
+
+
+
+
+        $transection = new Transection();
+        $transection->account_type = $account_type;
+        $transection->account_id =  $account_id;
+        $transection->transection_type = $transection_type;
+        $transection->transection_amount = $transection_amount;
+
+        if ($account_type == 1 && $transection_type == 1) {
+            $transection->save();
+            toastr()->success('Personal Deposit Successfull');
+        } elseif ($account_type == 2 && $transection_type == 1) {
+            if ($fdr) {
+                $transection->save();
+                toastr()->success('FDR Deposit Successfull');
+            } else {
+                toastr()->error('You Dont habe FDR account');
+            }
+        } elseif ($account_type == 3 && $transection_type == 1) {
+            if ($fdr) {
+                $transection->save();
+                toastr()->success('DPS Deposit Successfull');
+            } else {
+                toastr()->error('You Dont habe DPS account');
+            }
+        } elseif ($account_type == 4 && $transection_type == 1) {
+            if ($loan) {
+                $transection->save();
+                toastr()->success('Loan Deposit Successfull');
+            } else {
+                toastr()->error('You Dont habe Loan account');
+            }
+        } elseif ($account_type == 1 && $transection_type == 2) {
+            if ($totalAmount >= $transection_amount) {
+                $transection->save();
+                toastr()->success('Personal withdraw Successfull');
+            } else {
+                toastr()->error('You Have unsufficient Balancee');
+            }
+        } elseif ($account_type == 2 && $transection_type == 2) {
+            if ($fdr) {
+                if ($totalfdr >= $transection_amount) {
+                    $transection->save();
+                    toastr()->success('FDR withdraw Successfull');
+                } else {
+                    toastr()->error('You Have unsufficient Balancee');
+                }
+            } else {
+                toastr()->error('You Dont have any FDR account');
+            }
+        } elseif ($account_type == 3 && $transection_type == 2) {
+            if ($dps) {
+                if ($totaldps >= $transection_amount) {
+                    $transection->save();
+                    toastr()->success('DPS Withdraw Successfull');
+                } else {
+                    toastr()->error('You Have unsufficient Balance in DPS');
+                }
+            } else {
+                toastr()->error('You dont  Have any Dps Account!');
+            }
+        } elseif ($account_type == 4 && $transection_type == 2) {
+            toastr()->error('SORRY! You cant Withdraw From Loan');
         } else {
-            toastr()->addSuccess('sorry you have unsufficient balance');
-
-            return back();
+            toastr()->error('SORRY! You Dont Have Any Account');
         }
-
-
         return back();
     }
+
     public function transection_history()
     {
         $history = Transection::all();
