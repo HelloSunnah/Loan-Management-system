@@ -20,7 +20,7 @@
                                     <div class="col-md-6">
 
                                         <label class="form-label">Name<span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control" placeholder="" name="name" value="{{ old('name') }}" required>
+                                        <input type="text" class="form-control" placeholder="" name="name" value="{{ old('name') }}" >
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Name(Bangle)<span style="color:red;"></span></label>
@@ -36,11 +36,11 @@
 
                                         </div>
                                         <label class="form-label">Father Name<span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control" placeholder="" name="father_name" value="{{ old('father_name') }}" required>
+                                        <input type="text" class="form-control" placeholder="" name="father_name" value="{{ old('father_name') }}" >
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label"> Mother Name<span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control" name="mother_name" value="{{ old('mother_name') }}" required>
+                                        <input type="text" class="form-control" name="mother_name" value="{{ old('mother_name') }}" >
                                     </div>
                                 </div>
 
@@ -56,7 +56,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Parmanent Address<span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control" name="parmanent_address" value="{{ old('parmanent_address') }}" required>
+                                        <input type="text" class="form-control" name="parmanent_address" value="{{ old('parmanent_address') }}" >
                                     </div>
                                 </div>
 
@@ -83,7 +83,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Mobile Number<span style="color:red;">*</span></label>
-                                        <input type="number" class="form-control" name="mobile" value="{{ old('mobile') }}" required>
+                                        <input type="number" class="form-control" name="mobile" value="{{ old('mobile') }}" >
                                     </div>
                                 </div>
                             </div>
@@ -94,11 +94,11 @@
                                     <div class="col-md-6">
 
                                         <label class="form-label">Image<span style="color:red;">*</span></label>
-                                        <input type="file" class="form-control" placeholder="" name="image" value="{{ old('image') }}" required>
+                                        <input type="file" class="form-control" placeholder="" name="image" value="{{ old('image') }}" >
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Signature<span style="color:red;">*</span></label>
-                                        <input type="file" class="form-control" name="signature" value="{{ old('signature') }}" required>
+                                        <input type="file" class="form-control" name="signature" value="{{ old('signature') }}" >
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -207,7 +207,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label class="form-label">Image<span style="color:red;"></span></label>
-                                        <input type="file" class="form-control" placeholder="" name="garanteer_image" value="{{ old('garanteer_image') }}" required>
+                                        <input type="file" class="form-control" placeholder="" name="garanteer_image" value="{{ old('garanteer_image') }}" >
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Signature <span style="color:red;"></span></label>
@@ -227,7 +227,7 @@
                                     <div class="col-md-6">
 
                                         <label class="form-label">Nominee<span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control" placeholder="" name="nominee_name" value="{{ old('nominee_name') }}" required>
+                                        <input type="text" class="form-control" placeholder="" name="nominee_name" value="{{ old('nominee_name') }}" >
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Nominee Relation<span style="color:red;"></span></label>
@@ -238,11 +238,11 @@
                                     <div class="col-md-6">
 
                                         <label class="form-label">Father Name<span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control" placeholder="" name="nominee_father_name" value="{{ old('nominee_father_name') }}" required>
+                                        <input type="text" class="form-control" placeholder="" name="nominee_father_name" value="{{ old('nominee_father_name') }}" >
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Mother Name<span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control" name="nominee_mother_name" value="{{ old('nominee_mother_name') }}" required>
+                                        <input type="text" class="form-control" name="nominee_mother_name" value="{{ old('nominee_mother_name') }}" >
                                     </div>
                                 </div>
                                 <div class="row">
@@ -261,7 +261,7 @@
                                 <div class="col-md-6">
 
                                     <label class="form-label">Present Address<span style="color:red;">*</span></label>
-                                    <input type="text" class="form-control" placeholder="" name="nominee_present_adress" value="{{ old('nominee_present_address') }}" required>
+                                    <input type="text" class="form-control" placeholder="" name="nominee_present_adress" value="{{ old('nominee_present_address') }}" >
                                 </div>
                                 <div class="col-md-6">
 

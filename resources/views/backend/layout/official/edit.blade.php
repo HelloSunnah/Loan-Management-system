@@ -20,7 +20,7 @@
                                     <div class="col-md-6">
 
                                         <label class="form-label">Name<span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control" placeholder="" name="name" value="{{$edit->name}}" required>
+                                        <input type="text" class="form-control" placeholder="" name="name" value="{{$edit->name}}" >
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Name(Bangle)<span style="color:red;"></span></label>
@@ -36,11 +36,11 @@
 
                                         </div>
                                         <label class="form-label">Father Name<span style="color:red;"></span></label>
-                                        <input type="text" class="form-control" placeholder="" name="mother_name" value="{{$edit->mother_name}}" required>
+                                        <input type="text" class="form-control" placeholder="" name="mother_name" value="{{$edit->mother_name}}" >
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label"> Mother Name<span style="color:red;"></span></label>
-                                        <input type="text" class="form-control" name="mother_name" value="{{$edit->mother_name}}" required>
+                                        <input type="text" class="form-control" name="mother_name" value="{{$edit->mother_name}}" >
                                     </div>
                                 </div>
 
@@ -83,7 +83,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Mobile Number<span style="color:red;">*</span></label>
-                                        <input type="number" class="form-control" name="mobile" value="{{$edit->mobile}}"  required>
+                                        <input type="number" class="form-control" name="mobile" value="{{$edit->mobile}}"  >
                                     </div>
                                 </div>
                             </div>
@@ -94,11 +94,11 @@
                                     <div class="col-md-6">
 
                                         <label class="form-label">Image<span style="color:red;"></span></label>
-                                        <input type="file" class="form-control" placeholder="" name="image" value="{{$edit->image}}"  required>
+                                        <input type="file" class="form-control" placeholder="" name="image" value="{{$edit->image}}"  >
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Signature<span style="color:red;"></span></label>
-                                        <input type="file" class="form-control" name="signature" value="{{$edit->signature}}"  required>
+                                        <input type="file" class="form-control" name="signature" value="{{$edit->signature}}"  >
                                     </div>
                                 </div> <div class="col-md-12">
                             
@@ -227,7 +227,7 @@
                                     <div class="col-md-6">
 
                                         <label class="form-label">Nominee<span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control" placeholder="" name="nominee_name" value="{{$edit->nominee_name}}"  required>
+                                        <input type="text" class="form-control" placeholder="" name="nominee_name" value="{{$edit->nominee_name}}"  >
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Nominee Relation<span style="color:red;"></span></label>
@@ -238,11 +238,11 @@
                                     <div class="col-md-6">
 
                                         <label class="form-label">Father Name<span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control" placeholder="" name="nominee_father_name" value="{{$edit->nominee_father_name}}"  required>
+                                        <input type="text" class="form-control" placeholder="" name="nominee_father_name" value="{{$edit->nominee_father_name}}"  >
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Mother Name<span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control" name="nominee_mother_name" value="{{$edit->nominee_mother_name}}"  required>
+                                        <input type="text" class="form-control" name="nominee_mother_name" value="{{$edit->nominee_mother_name}}"  >
                                     </div>
                                 </div>
                                 <div class="row">
@@ -261,7 +261,7 @@
                                 <div class="col-md-6">
 
                                     <label class="form-label">Present Address<span style="color:red;">*</span></label>
-                                    <input type="text" class="form-control" placeholder="" name="nominee_present_adress"value="{{$edit->nominee_present_adress}}" required>
+                                    <input type="text" class="form-control" placeholder="" name="nominee_present_adress"value="{{$edit->nominee_present_adress}}" >
                                 </div>
                                 <div class="col-md-6">
 
