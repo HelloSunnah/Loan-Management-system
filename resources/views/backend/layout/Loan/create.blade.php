@@ -25,7 +25,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Loan Ammount<span style="color:red;">*</span></label>
+                                        <label class="form-label">Loan Amount<span style="color:red;">*</span></label>
                                         <input type="number" class="form-control" name="amount" value="{{ old('ammount') }}" required>
                                     </div>
                                 </div>
@@ -38,24 +38,33 @@
                                         <input type="number" class="form-control" placeholder="5%" name="interest" value="{{ old('interest') }}" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Loan back in  Year<span style="color:red;">*</span></label>
-                                        <input type="number" class="form-control" name="validate_year" value="{{ old('validate_year') }}" required>
+                                        <label class="form-label">Loan Month<span style="color:red;">*</span></label>
+                                        <input type="number" placeholder="Please Enter Month" class="form-control" name="month" value="{{ old('month') }}" required>
                                     </div>
                                 </div>
                             </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">{{ __('app.Submit') }}</button>
-                        </div>
-                    </div>
-                    </form>
+                            <div class="col-md-12">
 
 
+                                <label class="form-label">Loan Purpose<span style="color:red;">*</span></label>
+                                <input type="text" class="form-control" placeholder="Write valid Purpose" name="loan_purpose" value="{{ old('loan_purpose') }}" >
+                            </div>
 
+
+                  
                 </div>
+                <div class="col-12">
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">{{ __('app.Submit') }}</button>
+                    </div>
+                </div>
+                </form>
+
+
+
             </div>
         </div>
+    </div>
     </div>
     </div>
 </main>

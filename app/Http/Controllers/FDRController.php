@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use alert;
+use Carbon\Carbon;
 use App\Models\FDR;
 use App\Models\Member;
 use App\Models\Transection;
@@ -26,12 +27,12 @@ class FDRController extends Controller
         $account = Member::where('status', '1')->get();
         return view('backend.layout.FDR.fdr_create', compact('account'));
     }
-    public function fdr_edit($id){
-        $data['edit']=FDR::find($id);
+    public function fdr_edit($id)
+    {
+        $data['edit'] = FDR::find($id);
         $data['account'] = Member::where('status', '1')->get();
 
-        return view('backend.layout.FDR.fdr_edit',$data);
-
+        return view('backend.layout.FDR.fdr_edit', $data);
     }
     public function fdr_status_post($id)
     {
@@ -55,19 +56,21 @@ class FDRController extends Controller
                 $data2->save();
             }
         }
-        // toastr()->addSuccess('Status Update Successfully');
+        toastr()->success('Status Update Successfully');
         return back();
     }
     public function fdr_create_post(Request $request)
     {
+        $currentDate = Carbon::now();
 
         $fdr = new FDR();
         $fdr->account_number =  $request->get('account_number');
         $fdr->ammount =  $request->get('ammount');
         $fdr->interest =  $request->get('interest');
-        $fdr->validate_year = $request->get('validate_year');
+        $fdr->month = $request->get('month');
+        $fdr->interest_amount =($request->get('ammount')*$request->get('interest')/100);
+        $fdr->close_date =$currentDate->addMonths($request->month);
         $fdr->save();
-        // toastr()->addSuccess('FDR Create Successfully');
         $transaction = new Transection();
         $transaction->account_id = $request->get('account_number');
         $transaction->account_type = '2';
@@ -75,26 +78,23 @@ class FDRController extends Controller
         $transaction->transection_amount = $request->get('ammount');
 
         $transaction->save();
+        toastr()->success('FDR Create Successfully');
+
         return to_route('fdr.list.all');
     }
-    public function fdr_edit_post(Request $request,$id)
+    public function fdr_edit_post(Request $request, $id)
     {
+        $currentDate = Carbon::now();
 
         $fdr = FDR::find($id);
         $fdr->account_number =  $request->get('account_number');
-        $fdr->ammount =  $request->get('ammount');
         $fdr->interest =  $request->get('interest');
-        $fdr->validate_year = $request->get('validate_year');
+        $fdr->month = $request->get('month');
+        $fdr->close_date = $currentDate->addMonths($request->month);
+
         $fdr->save();
-        toastr()->addSuccess('FDR update Successfully');
+        toastr()->success('FDR update Successfully');
 
         return to_route('fdr.list.all');
-    }
-    public function  search_account(Request $request)
-    {
-        $accountNumber = $request->input('account_number');
-        $accounts = Member::where('account_number', 'LIKE', '%' . $accountNumber . '%')->get();
-
-        return view('backend.layout.FDR.fdr_create', compact('accounts'));
     }
 }

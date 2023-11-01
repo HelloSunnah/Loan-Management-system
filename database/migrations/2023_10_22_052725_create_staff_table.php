@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('nid');
             $table->date('dob');
+            $table->bigInteger('status')->default(1);
             $table->bigInteger('salary');
             $table->string('blood_group')->nullable();
             $table->string('father_name')->nullable();

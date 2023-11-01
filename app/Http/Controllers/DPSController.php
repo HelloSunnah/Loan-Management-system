@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use toastr;
+use Carbon\Carbon;
 use App\Models\DPS;
 use App\Models\FDR;
 use App\Models\Member;
@@ -31,20 +32,24 @@ class DPSController extends Controller
     }
     public function dps_edit($id)
     {
-
-
         $data['edit'] = DPS::find($id);
         $data['account'] = Member::where('status', '1')->get();
-        return view('backend.layout.DPS.dps_edit', compact('edit'));
+        return view('backend.layout.DPS.dps_edit', $data);
     }
     public function dps_create_post(Request $request)
     {
+        $currentDate = Carbon::now();
+
         $dps = new  DPS();
         $dps->account_number = $request->get('account_number');
         $dps->type = $request->get('type');
+
         $dps->interest = $request->get('interest');
         $dps->amount = $request->get('amount');
-        $dps->validate_year = $request->get('validate_year');
+        $dps->type_amount = $request->get('amount');
+        $dps->month = $request->get('month');
+        $dps->interest_amount =($request->get('amount')*$request->get('interest')/100);
+        $dps->close_date = $currentDate->addMonths($request->month);
         $dps->save();
 
 
@@ -56,7 +61,27 @@ class DPSController extends Controller
 
         $transaction->save();
         toastr()->success('DPS Create succesfull!');
-       
+
+        return to_route('dps.list.all');
+    }
+
+    public function dps_edit_post(Request $request, $id)
+    {
+        $currentDate = Carbon::now();
+
+        $dps = DPS::find($id);
+        $dps->account_number = $request->get('account_number');
+        $dps->type = $request->get('type');
+        $dps->interest = $request->get('interest');
+        // $dps->amount = $request->get('amount');
+        $dps->month = $request->get('month');
+        $dps->close_date = $currentDate->addMonths($request->month);
+
+
+        $dps->save();
+
+        toastr()->success('DPS Update succesfull!');
+
         return to_route('dps.list.all');
     }
     public function dps_status_post($id)

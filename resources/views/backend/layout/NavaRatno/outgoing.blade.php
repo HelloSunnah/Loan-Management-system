@@ -86,7 +86,7 @@
                                     <th>Expense Type</th>
                                     <th>Expense By</th>
                                     <th>Amount</th>
-                                    <th>Action</th>
+                                    <!-- <th>Action</th> -->
 
                                 </tr>
                             </thead>
@@ -98,10 +98,10 @@
                                     <td>{{$data->staff->name ??''}}</td>
 
                                     <td>{{$data->amount }}</td>
-                                    <td>
+                                    <!-- <td>
                                         <a href=""></a>
-                                        <!-- <a href="{{route('expense.edit',$data->id)}}" class="btn btn-primary">Edit</a> -->
-                                    </td>
+                                        <a href="{{route('expense.edit',$data->id)}}" class="btn btn-primary">Edit</a>
+                                    </td> -->
 
 
                                 </tr>

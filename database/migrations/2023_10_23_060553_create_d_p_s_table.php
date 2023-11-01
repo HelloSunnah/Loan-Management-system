@@ -17,9 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('account_number');
             $table->string('type');
+            $table->string('type_amount');
             $table->string('interest');
-            $table->string('validate_year')->nullable();
+            $table->string('month')->nullable();
             $table->string('amount');
+            $table->string('close_date');
+
             $table->bigInteger('interest_amount')->nullable();
             $table->bigInteger('total_amount')->nullable();
             $table->bigInteger('withdraw_amount')->nullable();

@@ -41,9 +41,9 @@
                     @foreach($fdr as $data)
                     <tr>
 
-                        <td>{{ $data->dps->account_number}}
+                        <td>{{ $data->dps->account_number ?? ''}}
                         </td>
-                        <td>{{ $data->dps->name}}
+                        <td>{{ $data->dps->name ?? ''}}
                         </td>
                         <td>
                             {{$data->amount}}

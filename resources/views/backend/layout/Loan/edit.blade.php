@@ -38,11 +38,16 @@
                                         <input type="number" class="form-control" placeholder="5%" name="interest" value="{{$edit->interest}}" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Loan back in  Year<span style="color:red;">*</span></label>
-                                        <input type="number" class="form-control" name="validate_year" value="{{$edit->validate_year}}" required>
+                                        <label class="form-label">Loan Month<span style="color:red;">*</span></label>
+                                        <input type="number" class="form-control" name="month" value="{{$edit->month}}" required>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Loan Purpose<span style="color:red;">*</span></label>
+                                <input type="text" class="form-control" placeholder="Write valid Purpose" name="loan_purpose" value="{{$edit->loan_purpose}}">
+                            </div>
+
                     </div>
                     <div class="col-12">
                         <div class="d-grid">

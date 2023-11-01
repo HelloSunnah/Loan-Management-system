@@ -49,12 +49,12 @@
                                         <div>
 
                                         </div>
-                                        <label class="form-label">Present Address<span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control" placeholder="" name="present_address" value="{{ old('present_address') }}" required>
+                                        <label class="form-label">Present Address<span style="color:red;"></span></label>
+                                        <input type="text" class="form-control" placeholder="" name="present_address" value="{{ old('present_address') }}" >
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Parmanent Address<span style="color:red;"></span></label>
-                                        <input type="text" class="form-control" name="parmanent_address" value="{{ old('parmanent_address') }}">
+                                        <label class="form-label">Parmanent Address<span style="color:red;">*</span></label>
+                                        <input type="text" class="form-control" name="parmanent_address" value="{{ old('parmanent_address') }}" required>
                                     </div>
                                 </div>
 
@@ -67,8 +67,8 @@
                                         <input type="number" class="form-control" placeholder="" name="birth_id" value="{{ old('dob') }}">
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Nid <span style="color:red;">*</span></label>
-                                        <input type="number" class="form-control" name="nid" value="{{ old('nid') }}" required>
+                                        <label class="form-label">Nid <span style="color:red;"></span></label>
+                                        <input type="number" class="form-control" name="nid" value="{{ old('nid') }}" >
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
 
-                                        <label class="form-label">Birth Date<span style="color:red;">*</span></label>
+                                        <label class="form-label">Birth Date<span style="color:red;"></span></label>
                                         <input type="date" class="form-control" placeholder="" name="dob" value="{{ old('dob') }}">
                                     </div>
                                     <div class="col-md-6">
@@ -140,8 +140,8 @@
                                 <div class="row">
                                     <div class="col-md-6">
 
-                                        <label class="form-label">NID Number<span style="color:red;">*</span></label>
-                                        <input type="number" class="form-control" placeholder="" name="nominee_nid" value="{{ old('nominee_nid') }}" required>
+                                        <label class="form-label">NID Number<span style="color:red;"></span></label>
+                                        <input type="number" class="form-control" placeholder="" name="nominee_nid" value="{{ old('nominee_nid') }}" >
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Birth Id<span style="color:red;"></span></label>
@@ -153,12 +153,12 @@
                                 <div class="col-md-6">
 
                                     <label class="form-label">Present Address<span style="color:red;"></span></label>
-                                    <input type="text" class="form-control" placeholder="" name="nominee_present_adress" value="{{ old('nominee_present_address') }}">
+                                    <input type="text" class="form-control" placeholder="" name="nominee_present_adress" value="{{ old('nominee_present_address') }}" required>
                                 </div>
                                 <div class="col-md-6">
 
                                     <label class="form-label">Profession<span style="color:red;"></span></label>
-                                    <input type="text" class="form-control" placeholder="" name="nominee_profession" value="{{ old('nominee_profession') }}">
+                                    <input type="text" class="form-control" placeholder="" name="nominee_profession" value="{{ old('nominee_profession') }}" >
                                 </div>
                             </div>
                             <div class="row">

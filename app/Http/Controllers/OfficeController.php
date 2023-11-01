@@ -27,7 +27,7 @@ class OfficeController extends Controller
         $fees->savings = $request->get('savings');
         $fees->save();
 
-        toastr()->addSuccess('Fees Created Successfully');
+        toastr()->success('Fees Created Successfully');
 
         return back();
     }
@@ -69,7 +69,7 @@ class OfficeController extends Controller
         }
 
         $data->save();
-        toastr()->addSuccess('Data Store Successfully');
+        toastr()->success('Data Store Successfully');
 
         return back();
     }
@@ -96,7 +96,7 @@ class OfficeController extends Controller
         $user = User::first();
         $user->password = Hash::make($request->new_password);
         $user->save();
-        toastr()->addSuccess('Password Updated Successfully');
+        toastr()->success('Password Updated Successfully');
 
         return redirect('dashboard');
     }

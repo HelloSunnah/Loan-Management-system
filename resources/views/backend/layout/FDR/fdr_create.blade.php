@@ -38,8 +38,8 @@
                                         <input type="number" class="form-control" placeholder="5%" name="interest" value="{{ old('interest') }}" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">FDR Savings Year<span style="color:red;">*</span></label>
-                                        <input type="number" class="form-control" name="validate_year" value="{{ old('validate_year') }}" required>
+                                        <label class="form-label">FDR Savings Month<span style="color:red;">*</span></label>
+                                        <input type="number" class="form-control" placeholder="Please Enter Month Number" name="month" value="{{ old('month') }}" required>
                                     </div>
                                 </div>
                             </div>

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('purpose');
             $table->string('expense_by')->nullable();
             $table->string('amount');
+            $table->string('status');
             $table->string('date');
             $table->string('income_from');
             $table->string('transection_date')->nullable();

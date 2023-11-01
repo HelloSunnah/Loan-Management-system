@@ -73,7 +73,7 @@
                                     <th>Income Type</th>
                                     <th>Amount</th>
                                     <th>Income By</th>
-                                    <th>Amount</th>
+                                    <!-- <th>Amount</th> -->
 
                                 </tr>
                             </thead>

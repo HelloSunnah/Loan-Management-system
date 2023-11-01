@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Cashbook;
+use App\Http\Controllers\CroronJobController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DPSController;
@@ -130,6 +131,12 @@ Route::get('/outgoing/transection', [OfficeController::class, 'outgoingTransecti
 Route::post('/expense/store', [OfficeController::class, 'expense_store'])->name('expense.store');
 Route::get('/expense/edit/{id}', [OfficeController::class, 'expense_edit'])->name('expense.edit');
 Route::post('/expense/update', [OfficeController::class, 'expense_update'])->name('expense.update');
+
+
+
+Route::get('/fdr/intereset/increment', [CroronJobController::class, 'fdr_interest_increment']);
+Route::get('/loan/interest/increment', [CroronJobController::class, 'loan_interest_increment']);
+
 
 });
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

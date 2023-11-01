@@ -15,22 +15,25 @@ class DashboardController extends Controller
     public function dashboard()
     {
 
-        $MemberDeposit = Transection::where('status', '1')->where('transection_type', '1')->where('account_type', '1')->sum('transection_amount');
-        $Memberwith = Transection::where('status', '1')->where('transection_type', '2')->where('account_type', '1')->sum('transection_amount');
-        $data['totalAmount'] = $MemberDeposit - $Memberwith;
+        $MemberDeposit = Member::where('status', '1')->sum('personal_amount');
+        $data['totalAmount'] = $MemberDeposit;
 
 
-        $fdrDeposit = Transection::where('status', '1')->where('transection_type', '1')->where('account_type', '2')->sum('transection_amount');
-        $fdrWithdraw = Transection::where('status', '1')->where('transection_type', '2')->where('account_type', '2')->sum('transection_amount');
-        $data['totalfdr'] = $fdrDeposit - $fdrWithdraw;
+        $fdrDeposit = FDR::where('status', '1')->sum('ammount');
+        $fdrDeposit1 = FDR::where('status', '1')->sum('interest_amount');
+        $data['totalfdr'] = $fdrDeposit+ $fdrDeposit1;
+
+        $dpsDeposit = DPS::where('status', '1')->sum('amount');
+        $dpsDeposit1 = DPS::where('status', '1')->sum('interest_amount');
+        $data['totaldps'] = $dpsDeposit+ $dpsDeposit1;
 
 
-        $dpsDeposit = Transection::where('status', '1')->where('transection_type', '1')->where('account_type', '3')->sum('transection_amount');
-        $dpsWithdraw = Transection::where('status', '1')->where('transection_type', '2')->where('account_type', '3')->sum('transection_amount');
-        $data['totaldps'] = $dpsDeposit - $dpsWithdraw;
 
-        $data['loanDeposit'] = Transection::where('status', '1')->where('transection_type', '1')->where('account_type', '4')->sum('transection_amount');
-        $data['loanWithdraw'] = Transection::where('status', '1')->where('transection_type', '2')->where('account_type', '4')->sum('transection_amount');
+        $loanDeposit = Loan::where('status', '1')->sum('loan_amount');
+        // $loanDeposit1 = Loan::where('status', '1')->sum('interest_amount');
+        $data['loanDeposit'] = $loanDeposit;
+
+
 
 
         //official Expense And income

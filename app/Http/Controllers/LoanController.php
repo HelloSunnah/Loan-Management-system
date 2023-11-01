@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Loan;
 use App\Models\Member;
 use App\Models\Transection;
@@ -13,15 +14,16 @@ class LoanController extends Controller
 
     public function loan_list()
     {
-        $loan = Loan::where('status','1')->get();
+        $loan = Loan::where('status', '1')->get();
         return view('backend.layout.Loan.list', compact('loan'));
     }
 
-public function loan_list_close(){
-    
-    $loan = Loan::where('status','0')->get();
-    return view('backend.layout.Loan.list_all', compact('loan'));
-}
+    public function loan_list_close()
+    {
+
+        $loan = Loan::where('status', '0')->get();
+        return view('backend.layout.Loan.list_all', compact('loan'));
+    }
     public function loan_create()
     {
         $account = Member::where('status', '1')->get();
@@ -35,13 +37,27 @@ public function loan_list_close(){
     }
     public function loan_create_post(Request $request)
     {
+        $currentDate = Carbon::now();
+
         $data = new Loan();
         $data->account_number = $request->account_number;
         $data->loan_amount = $request->amount;
+        $data->total_amount = $request->amount;
         $data->interest = $request->interest;
-        $data->time = $request->validate_year;
+        $data->month = $request->month;
+        $data->loan_purpose = $request->loan_purpose;
+        $data->close_date = $currentDate->addMonths($request->month);
+        $data->interest_amount =($request->get('amount')*$request->get('interest')/100);
+        
         $data->status = '1';
         $data->save();
+        $transaction = new Transection();
+        $transaction->account_id = $request->get('account_number');
+        $transaction->account_type = '4';
+        $transaction->transection_type = '2';
+        $transaction->transection_amount = $request->get('amount');
+
+        $transaction->save();
         toastr()->Success('Loan create Successfully');
 
 
@@ -49,16 +65,22 @@ public function loan_list_close(){
     }
     public function loan_edit_post(Request $request, $id)
     {
+        $currentDate = Carbon::now();
+
         $data = Loan::find($id);
         $data->account_number = $request->account_number;
-        $data->loan_amount = $request->amount;
+        // $data->loan_amount = $request->amount;
         $data->interest = $request->interest;
-        $data->time = $request->validate_year;
+
+        $data->month = $request->month;
+        $data->loan_purpose = $request->loan_purpose;
+
+        $data->close_date = $currentDate->addMonths($request->month);
+
         $data->status = '1';
         $data->save();
-        
 
-     toastr()->Success('Loan Update Successfully');
+        toastr()->Success('Loan Update Successfully');
 
         return to_route('loan.list');
     }

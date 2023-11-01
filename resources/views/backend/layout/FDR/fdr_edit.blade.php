@@ -26,7 +26,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">FDR Ammount<span style="color:red;">*</span></label>
-                                        <input type="number" class="form-control" name="ammount" value="{{$edit->ammount}}" required>
+                                        <input type="number" readonly class="form-control" name="ammount" value="{{$edit->ammount}}" required>
                                     </div>
                                 </div>
                             </div>
@@ -38,8 +38,8 @@
                                         <input type="number" class="form-control" placeholder="5%" name="interest" value="{{$edit->interest}}" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">FDR Savings Year<span style="color:red;">*</span></label>
-                                        <input type="number" class="form-control" name="validate_year" value="{{$edit->validate_year}}" required>
+                                        <label class="form-label">FDR Savings Month<span style="color:red;">*</span></label>
+                                        <input type="number" class="form-control" name="month" value="{{$edit->month}}" required>
                                     </div>
                                 </div>
                             </div>

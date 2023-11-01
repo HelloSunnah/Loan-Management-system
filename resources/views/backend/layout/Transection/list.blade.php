@@ -18,7 +18,7 @@
             <h3>Transection Histroy</h3>
         </center>
         <div class="card-tools">
-        <button type="button" onclick="printDiv()" class="btn btn-primary btn-sm  ms-2 printHide"><i class="bi bi-printer"> Print</i></button>
+        <button onclick="printDiv()">Print</button>
 
         </div>
     </div>
@@ -87,14 +87,12 @@
 
 <script src="{{asset('js/printThis.js')}}"></script>
 
-<script>
+ <script>
 
     function printDiv(printDiv) {
 
         $("#printable_content").html($("#print_history").html());
             $("#printable_content #action_table_th").remove();
-            $("#printable_content #delete_btn").remove();
-            $("#printable_content #action_table_td").remove();
             
             $("#printable_content #example_length").remove();
             $("#printable_content #example_filter").remove();
@@ -104,15 +102,45 @@
             header: `<div class="d-flex justify-content-center">
                                                                                                                                                                                 
                         <div class="text-center text-dark">
-                            <h4 style="margin-bottom:0px;"> {{auth()->user()->name}} </h4>
-                            <p><b> {{__('app.Student')}} {{__('app.List')}} </b></p>                                       
+                            <h4 style="margin-bottom:0px;">Navaratno </h4>
+                            <p><b> Transection History</b></p>                                       
                         </div>                      
                 </div>`,
             footer: `<div class="d-flex justify-content-between">
                         <small class="m-0">This is auto generated copy.</small>
-                        <small class="m-0">Powered by </small>
+                        <small class="m-0">Powerd By Navaratno </small>
                     </div>`
         });
     }
-</script>
+</script> 
+<!-- <script>
+        function printDiv(printDiv) {
+            var printContents = document.getElementById('printDiv').innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+        }
+    </script> -->
+<!-- <script>
+        function printDiv() {
+            var content = document.getElementById('printDiv');
+            var contentClone = content.cloneNode(true);
+
+            var printWindow = window.open('', '', 'width=600,height=600');
+            printWindow.document.write('<html><head><title>Print Div</title>');
+            printWindow.document.write('</head><body>');
+            printWindow.document.write(contentClone.outerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        }
+    </script> -->
+
+
+
+
 <div class="d-flex justify-content-center" @endsection

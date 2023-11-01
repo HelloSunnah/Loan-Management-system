@@ -99,6 +99,8 @@ class MemberController extends Controller
 
     public function office_create(Request $request)
     {
+
+        $amount=$request->get('personal_amount');
         $currentDateTime = Carbon::now();
         $date = $currentDateTime->format('mdHis');
         $accountNumber = "98" . $date;
@@ -169,7 +171,6 @@ class MemberController extends Controller
         $member->garanteer_phone = $request->get('garanteer_phone');
 
         $member->save();
-
         $transaction = new Transection();
         $transaction->account_id = $member->id;
         $transaction->account_type = '1';

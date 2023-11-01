@@ -20,7 +20,7 @@
                 <th>Account Number</th>
                 <td>{{$member->account_number}}</td>
               </tr>
-              
+
               <tr>
                 <th>Holder Name</th>
                 <td>{{$member->name}}</td>
@@ -127,7 +127,7 @@
               <a href="" data-bs-toggle="modal" data-bs-target="#loan">
 
                 <h3>LOAN</h3>
-                <h3>{{$loan->loan_amount}}</h3>
+                <h3>{{$loan->loan_amount+$loan->interest_amount}}</h3>
               </a>
               @else
               <h4>No Loan Account Available</h4>
@@ -161,7 +161,7 @@
                 <div class="h6 mb-0 mt-2 font-weight-bold text-gray-800">
 
 
-                  <h2> {{$fdr_deposit_amount}}
+                  <h2> {{$fdr->ammount+$fdr->interest_amount}}
                   </h2>
 
                 </div>
@@ -201,13 +201,13 @@
 
                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                   @if($dps->type==7 ?? '')
-                  <h3>{{$dps->amount}} Weekly </h3>
+                  <h3>{{$dps->type_amount}} Weekly </h3>
                   @endif
                   @if($dps->type==30)
-                  <h3>{{$dps->amount}} Monthly </h3>
+                  <h3>{{$dps->type_amount}} Monthly </h3>
                   @endif
                   @if($dps->type==1)
-                  <h3>{{$dps->amount}} Daily </h3>
+                  <h3>{{$dps->type_amount}} Daily </h3>
                   @endif
                 </div>
               </a>
@@ -254,35 +254,46 @@
             </a>
             <a href="#" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
-                <h3 class="mb-1">Interest Rate</h3>
-                <h4>{{$loan->interest}}%</h4>
+                <h3 class="mb-1">Loan Month</h3>
+                <h4>{{$loan->month}} Month</h4>
+              </div>
+            </a> <a href="#" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h3 class="mb-1">Loan Close Date</h3>
+                <h4>{{$loan->close_date}}</h4>
               </div>
             </a>
             <a href="#" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
-                <h3 class="mb-1">Total interest</h3>
-                <h4>{{$total_interest}}</h4>
+                <h3 class="mb-1">Interest Rate Monthly</h3>
+                <h4>{{$loan->interest}}%</h4>
+              </div>
+            </a>
+          <a href="#" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h3 class="mb-1">Loan interest</h3>
+                <h4>{{$loan->interest_amount}}</h4>
               </div>
             </a>
             <a href="#" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h3 class="mb-1">Total Amount</h3>
-                <h4>{{$total_interest+$loan->loan_amount}}</h4>
+                <h4>{{$loan->loan_amount+$loan->interest_amount}}</h4>
               </div>
             </a>
 
-            <a href="#" class="list-group-item list-group-item-action">
+          {{--  <a href="#" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h3 class="mb-1">Deposit Loan Amount</h3>
-                <h4>{{$deposit_amount}}</h4>
+                <h4>{{$loan_deposit}}</h4>
               </div>
-            </a>
-            <a href="#" style="background-color: red;" class="list-group-item list-group-item-action">
+            </a> --}}
+           {{-- <a href="#" style="background-color: red;" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h3 class="mb-1">Lake Amount</h3>
-                <h4>{{$total_interest+$loan->loan_amount-$deposit_amount}}</h4>
+                <h4>{{$total_loan_interest+$loan1-$loan_deposit}}</h4>
               </div>
-            </a>
+            </a> --}}
             @endif
           </div>
         </div>
@@ -327,9 +338,22 @@
             <a href="#" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h3 class="mb-1">DPS Installment Amount</h3>
-                <h4>{{$dps->amount ??''}}</h4>
+                <h4>{{$dps->type_amount ??''}}</h4>
               </div>
             </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h3 class="mb-1">DPS Month</h3>
+                <h4>{{$dps->month}} Month</h4>
+              </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h3 class="mb-1">DPS Closed Date</h3>
+                <h4></h4>
+              </div>
+            </a>
+
             <a href="#" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h3 class="mb-1">DPS Interest Rate</h3>
@@ -339,20 +363,23 @@
             <a href="#" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h3 class="mb-1">Deposited Amount</h3>
-                <h4>{{$dps_deposit_amount ?? ''}}</h4>
+                <h4>{{$dps->amount}}</h4>
               </div>
             </a>
 
+      
+
+        
             <a href="#" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
-                <h3 class="mb-1">Total Interest Amount</h3>
-                <h4>{{$total_interest_amount ?? ''}}</h4>
+                <h3 class="mb-1">Total Interest</h3>
+                <h4>{{$dps->interest_amount}}</h4>
               </div>
             </a>
             <a href="#" style="background-color:aqua;" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h3 class="mb-1">Intotal Amount</h3>
-                <h4>{{$dps_deposit_amount+$total_interest_amount ?? ''}}</h4>
+                <h4>{{$dps->amount+$dps->interest_amount}}</h4>
               </div>
             </a>
             @endif
@@ -381,7 +408,19 @@
             <a href="#" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h3 class="mb-1">FDR Amount</h3>
-                <h4>{{$fdr_deposit_amount}}</h4>
+                <h4>{{$fdr->ammount}}</h4>
+              </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h3 class="mb-1">FDR Month</h3>
+                <h4>{{$fdr->month}} Month</h4>
+              </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h3 class="mb-1">FDR Closed Date</h3>
+                <h4>{{$fdr->close_date}}</h4>
               </div>
             </a>
             <a href="#" class="list-group-item list-group-item-action">
@@ -393,33 +432,19 @@
             <a href="#" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h3 class="mb-1">Total Interest</h3>
-                <h4>{{$total_interest_amount}}</h4>
+                <h4>{{$fdr->interest_amount}}</h4>
               </div>
             </a>
             <a href="#" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h3 class="mb-1">Total Amount & Interest</h3>
-                <h4>{{$total_interest_amount+$fdr_deposit_amount}}
+                <h4>{{$fdr->interest_amount+$fdr->ammount}}
 
                 </h4>
               </div>
             </a>
 
-            <a href="#" class="list-group-item list-group-item-action">
-              <div class="d-flex w-100 justify-content-between">
-                <h3 class="mb-1">withdraw Amount</h3>
-                <h4>{{$fdr_withdraw_amount}}</h4>
-              </div>
-            </a>
-            <a href="#" style="background-color:greenyellow" class="list-group-item list-group-item-action">
-
-              <div class="d-flex w-100 justify-content-between">
-                <h3 class="mb-1">Available Amount</h3>
-                <h4>
-                  {{$total_interest_amount+$fdr_deposit_amount-$fdr_withdraw_amount}}
-                </h4>
-              </div>
-            </a>
+        
             @endif
 
           </div>
@@ -448,7 +473,7 @@
             <a href="#" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h3 class="mb-1">Account Amount</h3>
-                <h4>{{$Account4}}</h4>
+                <h4>{{$Account->personal_amount}}</h4>
               </div>
             </a>
 

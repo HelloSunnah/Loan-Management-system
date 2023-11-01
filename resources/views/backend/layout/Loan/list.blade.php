@@ -39,7 +39,7 @@
                 <tbody>
                     @foreach($loan as $data)
                     <tr>
-                        <td>{{$data->account_number}}
+                        <td>{{$data->account_number ?? ''}}
                         </td>
 
                         <td>{{$data->loan->name ??''}}</td>

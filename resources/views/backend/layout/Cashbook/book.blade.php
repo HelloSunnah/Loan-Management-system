@@ -83,20 +83,51 @@
       <div class="c-dashboardInfo col-lg-3 col-md-6">
         <div class="wrap">
           <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Todays Income</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{$incomes}} <i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">This Month Expense {{$incomes1}} </h4>
         </div>
       </div>
       <div class="c-dashboardInfo col-lg-3 col-md-6">
         <div class="wrap">
           <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Todays Expense</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{$expense}} <i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">This Month Expense {{$expense1}} </h4>
         </div>
       </div>
+      @if($drawer>=0)
+      <div class="c-dashboardInfo col-lg-3 col-md-6">
+        <div class="wrap">
+          <h2 class=""> Profit</h2><span class="hind-font caption-12 c-dashboardInfo__count">{{$drawer}} <i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
+          @if($drawer1>=0)
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">This Month Profit {{$drawer1}} </h4>
+          @else @php
+          $negativeValue =($drawer1);
+          $positiveValue = abs($negativeValue);
+          @endphp
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">This Month Loss {{$positiveValue}} </h4>
+          @endif
+
+        </div>
+      </div>
+      @else
+      @php
+      $negativeValue =($drawer);
+      $positiveValue = abs($negativeValue);
+      @endphp
 
       <div class="c-dashboardInfo col-lg-3 col-md-6">
         <div class="wrap">
-          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"> Available</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{$drawer}} <i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
+          <h2 style="color: red;font-weight: bolder;" class="">Loss</h2><span class="hind-font caption-12 c-dashboardInfo__count">{{$positiveValue}} <i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
+          @if($drawer1>=0)
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">This Month Profit {{$drawer1}} </h4>
+          @else @php
+          $negativeValue =($drawer1);
+          $positiveValue = abs($negativeValue);
+          @endphp
+          <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">This Month Loss {{$positiveValue}} </h4>
+          @endif
         </div>
       </div>
     </div>
+    @endif
   </div>
 </div>
 @endsection

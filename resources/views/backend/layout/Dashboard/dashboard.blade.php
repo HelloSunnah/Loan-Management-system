@@ -94,12 +94,12 @@
 
             <div class="c-dashboardInfo col-lg-3 col-md-6">
                 <div class="wrap">
-                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"> Loan Ammount</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{$loanWithdraw}}<i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
+                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Personal Account Amount</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{$totalAmount}}<i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
                 </div>
             </div>
             <div class="c-dashboardInfo col-lg-3 col-md-6">
                 <div class="wrap">
-                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"> Collect Loan Amount</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{$loanDeposit}}<i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
+                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title"> Given Loan Amount</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{$loanDeposit}}<i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
                 </div>
             </div>
         </div>
@@ -115,11 +115,7 @@
                 </div>
             </div>
 
-            <div class="c-dashboardInfo col-lg-3 col-md-6">
-                <div class="wrap">
-                    <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Personal Account Amount</h4><span class="hind-font caption-12 c-dashboardInfo__count">{{$totalAmount}}<i class="fa-solid fa-bangladeshi-taka-sign"></i></span>
-                </div>
-            </div>
+          
 
         </div>
     </div>

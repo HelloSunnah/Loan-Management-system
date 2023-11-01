@@ -144,7 +144,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
 
-                                        <label class="form-label">NID Number<span style="color:red;">*</span></label>
+                                        <label class="form-label">NID Number<span style="color:red;"></span></label>
                                         <input type="number" class="form-control" placeholder="" name="nominee_nid" value="{{$edit->nominee_nid}}">
                                     </div>
                                     <div class="col-md-6">
@@ -156,8 +156,8 @@
                             <div class="row">
                                 <div class="col-md-6">
 
-                                    <label class="form-label">Present Address<span style="color:red;"></span></label>
-                                    <input type="text" class="form-control" placeholder="" name="nominee_present_adress" value="{{$edit->nominee_present_adress}}">
+                                    <label class="form-label">Present Address<span style="color:red;">*</span></label>
+                                    <input type="text" class="form-control" placeholder="" name="nominee_present_adress" required value="{{$edit->nominee_present_adress}}">
                                 </div>
                                 <div class="col-md-6">
 

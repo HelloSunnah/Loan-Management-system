@@ -15,21 +15,20 @@
     <div class="card-header">
         <h3 class="card-title">
             Matured DPS List </h3>
-      
+
     </div>
 
     <div class="card-body">
         <div class="table-responsive">
-        <table id="myTable" class="table table-hover" cellspacing="0" width="100%">
+            <table id="myTable" class="table table-hover" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                    <th>Account Number</th>
-                    <th>Account Holder</th>
+                        <th>Account Number</th>
+                        <th>Account Holder</th>
                         <th>DPS Amount</th>
                         <th>Type</th>
                         <th>interest</th>
-                        <th>interests Amount</th>
-                        <th>Total Amount</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -37,8 +36,9 @@
                     @foreach($fdr as $data)
                     <tr>
 
-                    <td>{{ $data->dps->account_number}}
-                        </td> <td>{{ $data->dps->name}}
+                        <td>{{ $data->dps->account_number ?? ''}}
+                        </td>
+                        <td>{{ $data->dps->name ?? ''}}
                         </td>
                         <td>
                             {{$data->amount}}
@@ -46,7 +46,7 @@
                         <td>
                             @if($data->type==1)
                             <p>Daily</p>
-                            @endif 
+                            @endif
                             @if($data->type==7)
                             <p>Weekly</p>
                             @endif

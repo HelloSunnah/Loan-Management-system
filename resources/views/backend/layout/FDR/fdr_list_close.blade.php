@@ -32,7 +32,7 @@
                 <tbody>
                     @foreach($fdr as $data)
                     <tr>
-                        <td>{{$data->fdr->account_number }}
+                        <td>{{$data->fdr->account_number ?? ''}}
 
                         </td>
                         <td>

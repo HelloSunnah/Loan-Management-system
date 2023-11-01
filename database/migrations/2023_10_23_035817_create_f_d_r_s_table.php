@@ -21,7 +21,8 @@ return new class extends Migration
             $table->bigInteger('interest');
             $table->bigInteger('interest_amount')->nullable();
             $table->bigInteger('total_amount')->nullable();
-            $table->bigInteger('validate_year');
+            $table->bigInteger('month');
+            $table->string('close_date');
             $table->string('status')->default(1);
 
             $table->timestamps();

@@ -13,7 +13,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class TransectionController extends Controller
 {
-    
+
 
 
     public function transection(Request $request, $id)
@@ -23,6 +23,12 @@ class TransectionController extends Controller
         $account_id = $request->account_id;
         $transection_amount  = $request->transection_amount;
 
+        $MemberFind = Member::where('id', $id)->where('status', '1')->first();
+        $fdrfind = FDR::where('account_number', $id)->where('status', '1')->first();
+        $dpsfind = DPS::where('account_number', $id)->where('status', '1')->first();
+        $loanfind = Loan::where('account_number', $id)->where('status', '1')->first();
+
+
 
         $Member = Member::where('id', $id)->where('status', '1')->count();
         $fdr = FDR::where('account_number', $id)->where('status', '1')->count();
@@ -30,22 +36,19 @@ class TransectionController extends Controller
         $loan = Loan::where('account_number', $id)->where('status', '1')->count();
 
 
-        $MemberDeposit = Transection::where('account_id', $id)->where('status', '1')->where('transection_type', '1')->where('account_type', '1')->sum('transection_amount');
-        $Memberwith = Transection::where('account_id', $id)->where('status', '1')->where('transection_type', '2')->where('account_type', '1')->sum('transection_amount');
-        $totalAmount = $MemberDeposit - $Memberwith;
+        //withdraw dps
+        $dpswithdraw = DPS::where('account_number', $id)->where('status', '1')->sum('amount');
+        $dpswithdrawinterest = DPS::where('account_number', $id)->where('status', '1')->sum('interest_amount');
+        $total_dps =  $dpswithdraw + $dpswithdrawinterest;
+
+        $fdrwithdraw = FDR::where('account_number', $id)->where('status', '1')->sum('ammount');
+        $fdrwithdrawinterest = FDR::where('account_number', $id)->where('status', '1')->sum('interest_amount');
+        $total_fdr =  $fdrwithdraw + $fdrwithdrawinterest;
 
 
-        $fdrDeposit = Transection::where('account_id', $id)->where('status', '1')->where('transection_type', '1')->where('account_type', '2')->sum('transection_amount');
-        $fdrWithdraw = Transection::where('account_id', $id)->where('status', '1')->where('transection_type', '2')->where('account_type', '2')->sum('transection_amount');
-        $totalfdr = $fdrDeposit - $fdrWithdraw;
-
-
-        $dpsDeposit = Transection::where('account_id', $id)->where('status', '1')->where('transection_type', '1')->where('account_type', '3')->sum('transection_amount');
-        $dpsWithdraw = Transection::where('account_id', $id)->where('status', '1')->where('transection_type', '2')->where('account_type', '3')->sum('transection_amount');
-        $totaldps = $dpsDeposit - $dpsWithdraw;
-
-        $loanDeposit = Transection::where('account_id', $id)->where('status', '1')->where('transection_type', '1')->where('account_type', '4')->sum('transection_amount');
-        $loanWithdraw = Transection::where('account_id', $id)->where('status', '1')->where('transection_type', '2')->where('account_type', '4')->sum('transection_amount');
+        $loanDeposit = Loan::where('account_number', $id)->where('status', '1')->sum('loan_amount');
+        $loanDepositInterest = Loan::where('account_number', $id)->where('status', '1')->sum('interest_amount');
+        $total_loan =  $loanDeposit + $loanDepositInterest;
 
 
 
@@ -56,32 +59,50 @@ class TransectionController extends Controller
         $transection->transection_type = $transection_type;
         $transection->transection_amount = $transection_amount;
 
+
         if ($account_type == 1 && $transection_type == 1) {
             $transection->save();
             toastr()->success('Personal Deposit Successfull');
         } elseif ($account_type == 2 && $transection_type == 1) {
             if ($fdr) {
+                $fdrfind->ammount += $transection_amount;
+                $fdrfind->interest_amount += ($transection_amount * $fdrfind->interest) / 100;
+                $fdrfind->save();
                 $transection->save();
                 toastr()->success('FDR Deposit Successfull');
             } else {
+
                 toastr()->error('You Dont habe FDR account');
             }
         } elseif ($account_type == 3 && $transection_type == 1) {
-            if ($fdr) {
+            if ($dps) {
+
+                $dpsfind->amount += $transection_amount;
+                $dpsfind->interest_amount += ($transection_amount * $dpsfind->interest) / 100;
+                $dpsfind->save();
                 $transection->save();
+
                 toastr()->success('DPS Deposit Successfull');
             } else {
+
                 toastr()->error('You Dont habe DPS account');
             }
         } elseif ($account_type == 4 && $transection_type == 1) {
             if ($loan) {
-                $transection->save();
-                toastr()->success('Loan Deposit Successfull');
+
+                if ($total_loan >= $transection_amount) {
+                    $loanfind->loan_amount -= $transection_amount;
+                    $loanfind->save();
+                    $transection->save();
+                    toastr()->success('Loan submit successfull');
+                }
             } else {
                 toastr()->error('You Dont habe Loan account');
             }
         } elseif ($account_type == 1 && $transection_type == 2) {
-            if ($totalAmount >= $transection_amount) {
+            if ($MemberFind->personal_amount >= $transection_amount) {
+                $MemberFind->personal_amount -= $transection_amount;
+                $MemberFind->save();
                 $transection->save();
                 toastr()->success('Personal withdraw Successfull');
             } else {
@@ -89,7 +110,10 @@ class TransectionController extends Controller
             }
         } elseif ($account_type == 2 && $transection_type == 2) {
             if ($fdr) {
-                if ($totalfdr >= $transection_amount) {
+
+                if ($total_fdr >= $transection_amount) {
+                    $fdrfind->ammount -= $transection_amount;
+                    $fdrfind->save();
                     $transection->save();
                     toastr()->success('FDR withdraw Successfull');
                 } else {
@@ -100,7 +124,9 @@ class TransectionController extends Controller
             }
         } elseif ($account_type == 3 && $transection_type == 2) {
             if ($dps) {
-                if ($totaldps >= $transection_amount) {
+                if ($total_dps >= $transection_amount) {
+                    $dpsfind->amount -= $transection_amount;
+                    $dpsfind->save();
                     $transection->save();
                     toastr()->success('DPS Withdraw Successfull');
                 } else {
