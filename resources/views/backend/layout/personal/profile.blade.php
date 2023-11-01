@@ -46,7 +46,7 @@
           </table>
         </div>
       </div>
-      <div class="col-md-4 mx-auto mt-5">
+      <div class="col-sm-4 mx-auto mb-4">
         <h3 class="card-title text-center"> <strong>Available Balance</strong></h3>
         <form action="{{route('transection',$member->id)}}" method="post">
           @csrf
